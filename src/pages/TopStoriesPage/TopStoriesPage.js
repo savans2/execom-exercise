@@ -5,6 +5,7 @@ import axios from '../../utility/axios'
 export default function TopStoriesPage() {
   // contains id of each post
   let [postIds, setPostIds] = useState([]);
+
   useEffect(() => {
     axios.get('/topstories.json?print=pretty').then(res => {
       setPostIds(res.data);
@@ -12,6 +13,16 @@ export default function TopStoriesPage() {
 
     });
   }, []);
+
+  function chunkArray(array, size) {
+    let tempArray = [];
+
+    for (let i = 0; i < array.length; i += size) {
+      tempArray.push(array.slice(i, i + size));
+    }
+
+    return tempArray;
+  }
 
   return (
     <div className="container p-0">
