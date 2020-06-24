@@ -3,6 +3,7 @@ import Post from '../../components/Post'
 import axios from '../../utility/axios'
 
 export default function TopStoriesPage() {
+  // contains id of each post
   let [postIds, setPostIds] = useState([]);
   useEffect(() => {
     axios.get('/topstories.json?print=pretty').then(res => {
