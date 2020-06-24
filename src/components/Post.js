@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Post() {
   return (
-    <div className="bg-light">
+    <div className="bg-light pb-2">
       <div className="d-flex flex-wrap align-items-center">
         <span className="mx-2">1.</span>
         <span>^</span>
