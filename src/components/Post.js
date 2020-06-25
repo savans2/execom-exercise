@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../utility/axios'
+import { getRelativeTime } from '../utility/helperFunctions';
 
 export default function Post(props) {
   const [postData, setPostData] = useState({});
@@ -24,7 +25,7 @@ export default function Post(props) {
       <div className="d-flex flex-wrap">
         <p className="my-0 mx-1">{postData.score} points</p>
         <a href="/#" className="my-0 mx-1">{postData.by}</a>
-        <a href="/#" className="my-0 mx-1">{postData.time}</a>
+        <a href="/#" className="my-0 mx-1">{getRelativeTime(postData.time * 1000)}</a>
         <a href="/#" className="my-0 mx-1">hide</a>
         <a href="/#" className="my-0 mx-1">comment</a>
       </div>
