@@ -3,6 +3,8 @@ import axios from '../utility/axios'
 
 export default function Post(props) {
   const [postData, setPostData] = useState({});
+  const url = postData.url === undefined ? 'https://undefined.com/' : postData.url;
+  const hostname = new URL(url).hostname;
 
   useEffect(() => {
     axios.get(`/item/${props.data.postID}.json?print=pretty`)
@@ -17,7 +19,7 @@ export default function Post(props) {
         <span className="mx-2">{props.data.index}</span>
         <span>^</span>
         <h6 className="my-0 mx-2">{postData.title}</h6>
-        <p className="my-0">(www.example.com)</p>
+        <a href="/#" className="my-0">{`${hostname}`}</a>
       </div>
       <div className="d-flex flex-wrap">
         <p className="my-0 mx-1">{postData.score} points</p>
