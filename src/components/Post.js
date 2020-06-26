@@ -19,7 +19,7 @@ export default function Post(props) {
     <div className="bg-light pb-2">
       <div className="d-flex flex-wrap align-items-center">
         <span className="mx-2">{props.data.index}</span>
-        <span>^</span>
+        <span>▲</span>
         <h6 className="my-0 mx-2">{postData.title}</h6>
         <a href="/#" className="my-0">{`${hostname}`}</a>
       </div>
