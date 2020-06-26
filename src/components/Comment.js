@@ -1,27 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from '../utility/axios';
+import { getRelativeTime } from '../utility/helperFunctions'
 
-export default function Comment() {
+export default function Comment(props) {
+  const [commentData, setCommentData] = useState([]);
+
+  useEffect(() => {
+    axios.get(`/item/${props.data.commentID}.json?print=pretty`)
+      .then(res => {
+        setCommentData(res.data);
+      });
+  }, []);
+
   return (
-    <div className="bg-light">
+    <div className="bg-light py-3">
       <div className="d-flex flex-wrap">
         <div className="mx-1">
           <div>
             <span className="mx-1">^</span>
-            <span className="mx-1">name</span>
-            <span className="mx-1">36 minutes ago</span>
+            <a href="/#" className="mx-1">{commentData.by}</a>
+            <span className="mx-1">{getRelativeTime(commentData.time * 1000)}</span>
             <span className="mx-1">[-]</span>
           </div>
           <div className="pl-4">
-            <p>
-              > The problem is that the behavior of your physics
-              simulation depends on the delta time you pass in.
-              The effect could be subtle as your game having a
-              slightly different “feel” depending on framerate
-              Is THIS why the physics in GTA San Andreas
-              felt different on each console, and WAY different on
-              PC? I have always suspected something
-              like this but never knew for certain.
-            </p>
+            <p>{commentData.text}</p>
             <a href="/#">Reply</a>
           </div>
         </div>
