@@ -8,7 +8,7 @@ export default function Routes() {
     <React.Fragment>
       <Switch>
         <Route path="/" exact component={TopStoriesPage} />
-        <Route path="/comments" exact component={CommentsPage} />
+        <Route path="/comments/:postID" exact component={CommentsPage} />
       </Switch>
     </React.Fragment>
   )
