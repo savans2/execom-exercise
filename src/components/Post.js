@@ -28,7 +28,17 @@ export default function Post(props) {
         <a href="/#" className="my-0 mx-1">{postData.by}</a>
         <a href="/#" className="my-0 mx-1">{getRelativeTime(postData.time * 1000)}</a>
         <a href="/#" className="my-0 mx-1">hide</a>
-        <Link to="/comments" className="my-0 mx-1">comments</Link>
+        <Link
+          to={{
+            pathname: `/comments/${postData.id}`,
+            data: {
+              kids: postData.kids
+            }
+          }}
+          className="my-0 mx-1"
+        >
+          comments
+        </Link>
       </div>
     </div >
   )
