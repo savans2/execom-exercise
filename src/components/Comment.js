@@ -22,25 +22,33 @@ export default function Comment(props) {
     return list;
   }
 
-  return (
-    <div className="bg-light py-3">
-      <div className="d-flex flex-wrap">
-        <div className="mx-1">
-          <div>
-            <span className="mx-1">▲</span>
-            <a href="/#" className="mx-1">{commentData.by}</a>
-            <span className="mx-1">{getRelativeTime(commentData.time * 1000)}</span>
-            <span className="mx-1">[-]</span>
+  const renderComment = () => {
+    if (commentData.deleted) {
+      return <React.Fragment />
+    } else {
+      return (
+        <div className="bg-light py-3">
+          <div className="d-flex flex-wrap">
+            <div className="mx-1">
+              <div>
+                <span className="mx-1">▲</span>
+                <a href="/#" className="mx-1">{commentData.by}</a>
+                <span className="mx-1">{getRelativeTime(commentData.time * 1000)}</span>
+                <span className="mx-1">[-]</span>
+              </div>
+              <div className="pl-4">
+                <div dangerouslySetInnerHTML={{ __html: commentData.text }} />
+                <a href="/#">Reply</a>
+              </div>
+            </div>
           </div>
-          <div className="pl-4">
-            <div dangerouslySetInnerHTML={{ __html: commentData.text }} />
-            <a href="/#">Reply</a>
+          <div className="bg-secondary ml-4">
+            {listReplies()}
           </div>
         </div>
-      </div>
-      <div className="bg-secondary ml-4">
-        {listReplies()}
-      </div>
-    </div>
-  )
+      );
+    }
+  }
+
+  return renderComment();
 }
