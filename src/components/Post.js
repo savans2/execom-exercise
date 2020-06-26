@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../utility/axios'
 import { getRelativeTime } from '../utility/helperFunctions';
+import { Link } from 'react-router-dom';
 
 export default function Post(props) {
   const [postData, setPostData] = useState({});
@@ -27,8 +28,8 @@ export default function Post(props) {
         <a href="/#" className="my-0 mx-1">{postData.by}</a>
         <a href="/#" className="my-0 mx-1">{getRelativeTime(postData.time * 1000)}</a>
         <a href="/#" className="my-0 mx-1">hide</a>
-        <a href="/#" className="my-0 mx-1">comment</a>
+        <Link to="/comments" className="my-0 mx-1">comments</Link>
       </div>
-    </div>
+    </div >
   )
 }
