@@ -23,7 +23,7 @@ export default function Comment(props) {
             <span className="mx-1">[-]</span>
           </div>
           <div className="pl-4">
-            <p>{commentData.text}</p>
+            <div dangerouslySetInnerHTML={{ __html: commentData.text }} />
             <a href="/#">Reply</a>
           </div>
         </div>
