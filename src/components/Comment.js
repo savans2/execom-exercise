@@ -4,6 +4,7 @@ import { getRelativeTime } from '../utility/helperFunctions'
 
 export default function Comment(props) {
   const [commentData, setCommentData] = useState([]);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     axios.get(`/item/${props.data.commentID}.json?print=pretty`)
@@ -27,22 +28,22 @@ export default function Comment(props) {
       return <React.Fragment />
     } else {
       return (
-        <div className="bg-light py-3">
+        <div className="bg-light pt-3">
           <div className="d-flex flex-wrap">
             <div className="mx-1">
               <div>
-                <span className="mx-1">▲</span>
+                <span className={`mx-1 ${hidden ? 'd-none' : 'd-inline'}`}>▲</span>
                 <a href="/#" className="mx-1">{commentData.by}</a>
                 <span className="mx-1">{getRelativeTime(commentData.time * 1000)}</span>
-                <span className="mx-1">[-]</span>
+                <span className="mx-1" onClick={() => setHidden(!hidden)}>[-]</span>
               </div>
-              <div className="pl-4">
+              <div className={`pl-4 ${hidden ? 'd-none' : 'd-block'}`}>
                 <div dangerouslySetInnerHTML={{ __html: commentData.text }} />
                 <a href="/#">Reply</a>
               </div>
             </div>
           </div>
-          <div className="bg-secondary ml-4">
+          <div className={`bg-secondary ml-4 ${hidden ? 'd-none' : 'd-block'}`}>
             {listReplies()}
           </div>
         </div>
