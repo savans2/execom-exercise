@@ -8,6 +8,18 @@ export default function Post(props) {
   const url = postData.url === undefined ? 'https://undefined.com/' : postData.url;
   const hostname = new URL(url).hostname;
 
+  /**
+   * If CommentsPage is accessed directly via link (http://localhost:3000/comments/23664067)
+   * props.data.postID will be empty and data fetch in useEffect will fail
+   * which would mean that whole app would crash.
+   * This if checks prop postID if its undefiend prop postID is set trough
+   * id which is in url. 
+   * .replace(/^\D+/g) replaces non numbers with ''.
+   */
+  if (props.data.postID === undefined) {
+    props.data.postID = window.location.pathname.replace(/^\D+/g, '');
+  }
+
   useEffect(() => {
     axios.get(`/item/${props.data.postID}.json?print=pretty`)
       .then(res => {
