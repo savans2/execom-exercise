@@ -15,6 +15,12 @@ export default function Post(props) {
       });
   }, []);
 
+  const getCommentNumber = () => {
+    if (postData.hasOwnProperty('descendants')) {
+      return postData.descendants === 0 ? '' : postData.descendants + ' comments'
+    }
+  }
+
   return (
     <div className="bg-light py-2">
       <div className="d-flex">
@@ -41,7 +47,7 @@ export default function Post(props) {
           }}
           className="my-0 mx-1"
         >
-          comments
+          {getCommentNumber()}
         </Link>
       </div>
     </div >
