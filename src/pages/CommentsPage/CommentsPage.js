@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import Comment from '../../components/Comment';
 import axios from '../../utility/axios';
+import Post from '../../components/Post';
 
 export default function CommentsPage(props) {
   const [postID, setPostID] = useState(props.match.params.postID);
-  const [kids, setKids] = useState(
-    props.location.data !== undefined ? props.location.data.kids : []
+  const [postData, setPostData] = useState(
+    props.location.data !== undefined ? props.location.data : []
   );
 
   useEffect(() => {
-    if (kids.length === 0) {
+    if (postData.kids === undefined) {
       axios.get(`/item/${postID}.json?print=pretty`).then(res => {
-        setKids(res.data.kids);
+        setPostData(res.data);
       });
     }
   });
 
-  const listComments = kids.map((commentID, index) => {
-    return <Comment data={{ commentID }} key={kids[index]} />
-  });
+  const listComments = postData.hasOwnProperty('kids') ? postData.kids.map((commentID, index) => {
+    return <Comment data={{ commentID }} key={postData.kids[index]} />
+  }) : [];
+
 
   return (
-    <div className="container">
+    <div className="container bg-light p-0">
+      <div>
+        <Post data={{
+          postID: postData.id,
+          index: '',
+        }} />
+        <div className="mx-5">
+          <textarea className="d-block col-6" />
+          <input type="button" value="Add comment" />
+        </div>
+      </div>
       {listComments}
     </div>
   )
