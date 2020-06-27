@@ -41,9 +41,7 @@ export default function Post(props) {
         <Link
           to={{
             pathname: `/comments/${postData.id}`,
-            data: {
-              kids: postData.kids
-            }
+            data: postData
           }}
           className="my-0 mx-1"
         >
