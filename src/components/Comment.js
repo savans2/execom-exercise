@@ -23,6 +23,13 @@ export default function Comment(props) {
     return list;
   }
 
+  const getDescendants = () => {
+    if (commentData.hasOwnProperty('kids')) {
+      return commentData.kids.length
+    }
+    return 1;
+  }
+
   const renderComment = () => {
     if (commentData.deleted) {
       return <React.Fragment />
@@ -35,7 +42,10 @@ export default function Comment(props) {
                 <span className={`mx-1 ${hidden ? 'd-none' : 'd-inline'}`}>▲</span>
                 <a href="/#" className="mx-1">{commentData.by}</a>
                 <span className="mx-1">{getRelativeTime(commentData.time * 1000)}</span>
-                <span className="mx-1" onClick={() => setHidden(!hidden)}>[-]</span>
+                <span className="mx-1"
+                  onClick={() => setHidden(!hidden)}>
+                  {hidden ? `[${getDescendants()} more]` : `[-]`}
+                </span>
               </div>
               <div className={`pl-4 ${hidden ? 'd-none' : 'd-block'}`}>
                 <div dangerouslySetInnerHTML={{ __html: commentData.text }} />
