@@ -20,10 +20,10 @@ export default function Post(props) {
       <div className="d-flex flex-wrap align-items-center">
         <span className="mx-2">{props.data.index}</span>
         <span>▲</span>
-        <h6 className="my-0 mx-2">{postData.title}</h6>
-        <a href="/#" className="my-0">{`${hostname}`}</a>
+        <a href={postData.url} target="_blank" className="h6 my-0 mx-2 text-dark">{postData.title}</a>
+        <a href="/#" className="my-0 mx-2" style={{ fontSize: '14px' }}>{`${hostname}`}</a>
       </div>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap ml-5" style={{ fontSize: '14px' }}>
         <p className="my-0 mx-1">{postData.score} points</p>
         <a href="/#" className="my-0 mx-1">{postData.by}</a>
         <a href="/#" className="my-0 mx-1">{getRelativeTime(postData.time * 1000)}</a>
