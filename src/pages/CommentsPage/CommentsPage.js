@@ -21,7 +21,7 @@ export default function CommentsPage(props) {
   });
 
   return (
-    <div className="container">
+    <div className="container p-0">
       {listComments}
     </div>
   )
