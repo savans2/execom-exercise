@@ -32,7 +32,7 @@ export default function CommentsPage(props) {
         <div className="mx-5">
           <textarea className="d-block col-6" />
           <input type="button" value="Add comment" />
-        </div>;
+        </div>
       </div>
       {listComments}
     </div>
