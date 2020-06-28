@@ -6,6 +6,7 @@ import { chunkArray } from '../../utility/helperFunctions'
 export default function TopStoriesPage() {
   // Contains ids of posts in chunks of 30.
   const [postIds, setPostIds] = useState([[]]);
+  const [pageIndex, setPageIndex] = useState(0);
 
   useEffect(() => {
     axios.get('/topstories.json?print=pretty').then(res => {
@@ -15,16 +16,20 @@ export default function TopStoriesPage() {
     });
   }, []);
 
-  const listPosts = postIds[0].map((id, index) =>
+  const listPosts = postIds[pageIndex].map((id, index) =>
     <Post key={id} data={{
       postID: id,
-      index: index + 1
+      index: (pageIndex * 30) + index + 1
     }} />
   );
 
   return (
-    <div className="container p-0">
+    <div className="container bg-light p-0">
       {listPosts}
+      {
+        pageIndex === postIds.length - 1 ? <React.Fragment /> :
+          <a href="/#" onClick={() => setPageIndex(pageIndex + 1)} className="mx-2">More</a>
+      }
     </div>
   )
 }
