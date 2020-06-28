@@ -36,7 +36,7 @@ export default function Comment(props) {
       return <React.Fragment />
     } else {
       return (
-        <div className="bg-light pt-3">
+        <div className="bg-light pt-3 comment">
           <div className="d-flex flex-wrap">
             <div className="mx-1 w-100">
               <div>

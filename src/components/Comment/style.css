@@ -1,5 +1,5 @@
 @media only screen and (max-width: 767px) {
-  a {
+  .comment a {
     display: inline-block;
     max-width: 175px;
     overflow: hidden;
