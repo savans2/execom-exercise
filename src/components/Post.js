@@ -42,7 +42,7 @@ export default function Post(props) {
         </div>
         <a href={postData.url} target="_blank" rel="noopener noreferrer" className="h6 my-0 mx-2 text-dark">
           {postData.title}
-          <a href="/#" className="my-0 mx-2" style={{ fontSize: '14px' }}>{`${hostname}`}</a>
+          <a href="/#" className="my-0" style={{ fontSize: '14px' }}> {`${hostname}`}</a>
         </a>
       </div>
       <div className="d-flex flex-wrap" style={{ fontSize: '14px', marginLeft: '42px' }}>
