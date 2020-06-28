@@ -5,8 +5,8 @@ export default function Navbar() {
   return (
     <div className="container bg-primary p-0 d-flex flex-wrap">
       <div>
-        <a href="/#" className="text-white mx-1">[Y]</a>
-        <a href="/#" className="text-white mx-1">Hacker News</a>
+        <Link to="/" className="text-white mx-1">[Y]</Link>
+        <Link to="/" className="text-white mx-1">Hacker News</Link>
       </div>
       <a href="/#" className="text-white mx-1">new</a>
       <a href="/#" className="text-white mx-1">past</a>
