@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from '../utility/axios';
-import { getRelativeTime } from '../utility/helperFunctions'
+import axios from '../../utility/axios';
+import { getRelativeTime } from '../../utility/helperFunctions'
+import './style.css';
 
 export default function Comment(props) {
   const [commentData, setCommentData] = useState([]);
@@ -37,7 +38,7 @@ export default function Comment(props) {
       return (
         <div className="bg-light pt-3">
           <div className="d-flex flex-wrap">
-            <div className="mx-1">
+            <div className="mx-1 w-100">
               <div>
                 <span className={`mx-1 ${hidden ? 'd-none' : 'd-inline'}`}>▲</span>
                 <a href="/#" className="mx-1">{commentData.by}</a>

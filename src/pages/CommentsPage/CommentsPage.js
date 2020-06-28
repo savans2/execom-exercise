@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Comment from '../../components/Comment';
+import Comment from '../../components/Comment/Comment';
 import axios from '../../utility/axios';
 import Post from '../../components/Post';
 
@@ -30,7 +30,7 @@ export default function CommentsPage(props) {
           index: '',
         }} />
         <div className="mx-5">
-          <textarea className="d-block col-6" />
+          <textarea className="d-block col-12 col-sm-8" />
           <input type="button" value="Add comment" />
         </div>
       </div>
