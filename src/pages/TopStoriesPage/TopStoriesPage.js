@@ -4,15 +4,12 @@ import axios from '../../utility/axios'
 import { chunkArray } from '../../utility/helperFunctions'
 
 export default function TopStoriesPage() {
-  // Contains ids of posts in chunks of 30.
   const [postIds, setPostIds] = useState([[]]);
   const [pageIndex, setPageIndex] = useState(0);
 
   useEffect(() => {
     axios.get('/topstories.json?print=pretty').then(res => {
       setPostIds(chunkArray(res.data, 30));
-    }).catch(error => {
-
     });
   }, []);
 
