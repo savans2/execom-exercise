@@ -30,10 +30,7 @@ export default function CommentsPage(props) {
           index: '',
           location: props.location,
         }} />
-        <div className="mx-5">
-          <textarea className="d-block col-12 col-sm-8" />
-          <input type="button" value="Add comment" />
-        </div>
+        <hr />
       </div>
       {listComments}
     </div>
