@@ -16,7 +16,7 @@ export default function Post(props) {
       .then(res => {
         setPostData(res.data);
       });
-  });
+  }, [postID]);
 
   const getCommentNumber = () => {
     if (postData.hasOwnProperty('descendants')) {
