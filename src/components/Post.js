@@ -20,8 +20,13 @@ export default function Post(props) {
     props.data.postID = window.location.pathname.replace(/^\D+/g, '');
   }
 
+  const getPostID = () => {
+    return props.data.postID === undefined ?
+      props.data.location.pathname.replace(/^\D+/g, '') :
+      props.data.postID;
+  }
   useEffect(() => {
-    axios.get(`/item/${props.data.postID}.json?print=pretty`)
+    axios.get(`/item/${getPostID()}.json?print=pretty`)
       .then(res => {
         setPostData(res.data);
       });

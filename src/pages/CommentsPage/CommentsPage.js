@@ -28,6 +28,7 @@ export default function CommentsPage(props) {
         <Post data={{
           postID: postData.id,
           index: '',
+          location: props.location,
         }} />
         <div className="mx-5">
           <textarea className="d-block col-12 col-sm-8" />
