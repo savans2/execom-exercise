@@ -27,7 +27,7 @@ export default function Post(props) {
   return (
     <div className="bg-light py-2 d-flex">
       <div>
-        <span className="mx-2">{props.data.index}</span>
+        <span className="mx-1">{props.data.index}</span>
         <span>▲</span>
       </div>
       <div>
