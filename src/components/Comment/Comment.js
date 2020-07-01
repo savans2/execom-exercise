@@ -12,7 +12,7 @@ export default function Comment(props) {
       .then(res => {
         setCommentData(res.data);
       });
-  }, []);
+  }, [props.data.commentID]);
 
   const listReplies = () => {
     let list;
