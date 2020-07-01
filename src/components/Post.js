@@ -7,18 +7,16 @@ export default function Post(props) {
   const [postData, setPostData] = useState({});
   const url = postData.url === undefined ? 'https://undefined.com/' : postData.url;
   const hostname = new URL(url).hostname;
+  const postID = props.data.postID === undefined ?
+    props.data.location.pathname.replace(/^\D+/g, '') :
+    props.data.postID;
 
-  const getPostID = () => {
-    return props.data.postID === undefined ?
-      props.data.location.pathname.replace(/^\D+/g, '') :
-      props.data.postID;
-  }
   useEffect(() => {
-    axios.get(`/item/${getPostID()}.json?print=pretty`)
+    axios.get(`/item/${postID}.json?print=pretty`)
       .then(res => {
         setPostData(res.data);
       });
-  }, []);
+  });
 
   const getCommentNumber = () => {
     if (postData.hasOwnProperty('descendants')) {
@@ -33,7 +31,7 @@ export default function Post(props) {
         <span>▲</span>
       </div>
       <div>
-        <a href={postData.url} target="_blank" rel="noopener noreferrer" className="h6 my-0 mx-2 text-dark">
+        <a href={postData.url} target="_blank" rel="noopener noreferrer" className="h6 my-0 ml-2 text-dark">
           {postData.title}
         </a>
         <a href="/#" className="my-0 mx-2" style={{ fontSize: '14px' }}> {`${hostname}`}</a>
