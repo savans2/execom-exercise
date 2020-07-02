@@ -38,7 +38,7 @@ export default function Post(props) {
         <div className="d-flex flex-wrap mx-1" style={{ fontSize: '14px' }}>
           <p className="my-0 mx-1">{postData.score} points</p>
           <a href="/#" className="my-0 mx-1">{postData.by}</a>
-          <a href="/#" className="my-0 mx-1">{getRelativeTime(postData.time * 1000)}</a>
+          <span href="/#" className="my-0 mx-1">{getRelativeTime(postData.time * 1000)}</span>
           <Link
             to={{
               pathname: `/comments/${postData.id}`,
