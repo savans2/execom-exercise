@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 export default function Post(props) {
   const [postData, setPostData] = useState({});
-  const url = postData.url === undefined ? 'https://undefined.com/' : postData.url;
-  const hostname = new URL(url).hostname;
+  const hasUrl = postData.url === undefined ? false : true;
+  const hostname = hasUrl ? new URL(postData.url).hostname : '';
   const postID = props.data.postID === undefined ?
     props.data.location.pathname.replace(/^\D+/g, '') :
     props.data.postID;
