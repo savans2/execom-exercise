@@ -21,7 +21,6 @@ export default function CommentsPage(props) {
     return <Comment data={{ commentID }} key={postData.kids[index]} />
   }) : [];
 
-
   return (
     <div className="container bg-light p-0">
       <div>
