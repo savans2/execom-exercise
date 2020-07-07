@@ -55,7 +55,9 @@ export function getRelativeTime(createdAt) {
  * @returns {boolean}
  */
 export function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
+  const rect = element !== null ?
+    element.getBoundingClientRect() :
+    false;
   return (
     rect.top <= window.innerHeight &&
     rect.top + rect.height >= 0
