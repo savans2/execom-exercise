@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Post from '../../components/Post'
 import axios from '../../utility/axios'
-import { chunkArray } from '../../utility/helperFunctions'
+import { chunkArray, isInViewport } from '../../utility/helperFunctions'
+import debounce from 'lodash.debounce';
 
 export default function TopStoriesPage() {
   const [postIds, setPostIds] = useState([[]]);
   const [pageIndex, setPageIndex] = useState(0);
   const [listPosts, setListPosts] = useState([]);
+  const pageBottom = useRef();
 
   useEffect(() => {
     axios.get('/topstories.json?print=pretty').then(res => {
@@ -16,6 +18,13 @@ export default function TopStoriesPage() {
     });
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    }
+  });
+
   const getPosts = (postIds) => {
     setPageIndex(pageIndex + 1);
     return postIds[pageIndex].map((id, index) => ({
@@ -24,9 +33,14 @@ export default function TopStoriesPage() {
     }));
   }
 
-  const addMorePosts = () => {
-    const newPosts = getPosts(postIds);
-    setListPosts([...listPosts, ...newPosts]);
+  const loadMorePosts = debounce(() => {
+    setListPosts([...listPosts, ...getPosts(postIds)])
+  }, 100);
+
+  const onScroll = () => {
+    if (isInViewport(pageBottom.current)) {
+      loadMorePosts();
+    }
   }
 
   return (
@@ -40,8 +54,8 @@ export default function TopStoriesPage() {
         )
       }
       {
-        pageIndex === postIds.length - 1 ? <React.Fragment /> :
-          <a href="/#" onClick={() => addMorePosts()} className="mx-2">More</a>
+        pageIndex === postIds.length ? <React.Fragment /> :
+          <p ref={pageBottom} className="mx-2">Loading...</p>
       }
     </div>
   )
