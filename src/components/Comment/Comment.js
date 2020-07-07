@@ -32,7 +32,7 @@ export default function Comment(props) {
   }
 
   const renderComment = () => {
-    if (commentData.deleted) {
+    if (commentData === null || commentData.deleted) {
       return <React.Fragment />
     } else {
       return (
