@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import axios from '../utility/axios'
-import { getRelativeTime } from '../utility/helperFunctions';
+import axios from '../../utility/axios'
+import { getRelativeTime } from '../../utility/helperFunctions';
 import { Link } from 'react-router-dom';
 
 export default function Post(props) {
