@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import Post from '../../components/Post'
+import Post from '../../components/Post/Post.js'
 import axios from '../../utility/axios'
 import { chunkArray, isInViewport } from '../../utility/helperFunctions'
 import debounce from 'lodash.debounce';

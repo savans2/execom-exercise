@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Comment from '../../components/Comment/Comment';
 import axios from '../../utility/axios';
-import Post from '../../components/Post';
+import Post from '../../components/Post/Post.js';
 
 export default function CommentsPage(props) {
   const [postID, setPostID] = useState(props.match.params.postID);
