@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from '../../utility/axios';
 import { getRelativeTime } from '../../utility/helperFunctions'
-import './style.css';
 import {
   Title,
   Paragraph
