@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Comment from '../../components/Comment/Comment';
 import axios from '../../utility/axios';
-import Post from '../../components/Post';
+import Post from '../../components/Post/Post.js';
 
 export default function CommentsPage(props) {
   const [postID, setPostID] = useState(props.match.params.postID);
@@ -21,18 +21,15 @@ export default function CommentsPage(props) {
     return <Comment data={{ commentID }} key={postData.kids[index]} />
   }) : [];
 
-
   return (
     <div className="container bg-light p-0">
       <div>
         <Post data={{
           postID: postData.id,
           index: '',
+          location: props.location,
         }} />
-        <div className="mx-5">
-          <textarea className="d-block col-12 col-sm-8" />
-          <input type="button" value="Add comment" />
-        </div>
+        <hr />
       </div>
       {listComments}
     </div>

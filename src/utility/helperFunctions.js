@@ -48,3 +48,18 @@ export function getRelativeTime(createdAt) {
 
   return relativeTime;
 }
+
+/**
+ * Returns bool depending if element is in viewport.
+ * @param {HTMLnode} element 
+ * @returns {boolean}
+ */
+export function isInViewport(element) {
+  const rect = element !== null ?
+    element.getBoundingClientRect() :
+    false;
+  return (
+    rect.top <= window.innerHeight &&
+    rect.top + rect.height >= 0
+  );
+}
